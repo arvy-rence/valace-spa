@@ -1,7 +1,7 @@
 <template>
     <div class="pt-6 flex flex-col justify-center items-center">
         <span class="text-4xl font-bold text-primary font-kulim">LOGS</span>
-        <LogsTable :logs="logs"/>
+        <TableLogs :logs="logs"/>
     </div>
 </template>
 

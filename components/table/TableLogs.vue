@@ -18,12 +18,12 @@
                 </tbody>
             </table>
         </div>
-      </div>
+    </div>
 </template>
 
 <script>
 export default {
-    name: "LogsTable",
+    name: "TableLogs",
     props: {
         logs: {
             type: Array,
