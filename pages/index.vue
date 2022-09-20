@@ -47,8 +47,9 @@
 </template>
 
 <script>
-import CardCategory from "../components/card/CardCategory";
-import VerticalSpacer from "../components/VerticalSpacer";
+import CardCategory from "../components/card/CardCategory"
+import VerticalSpacer from "../components/VerticalSpacer"
+import { checkReload } from '~/composables/checkReload'
 
 export default {
     name: 'IndexPage',
@@ -61,6 +62,9 @@ export default {
     },
     created() {
 
+    },
+    mounted() {
+        checkReload()
     }
 }
 </script>

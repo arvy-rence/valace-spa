@@ -4,18 +4,21 @@
             <h1 class="text-4xl font-bold text-primary font-kulim">
                 LIBRARY EVENTS
             </h1>
-            <NuxtLink to="events/create">
-                <button class="text-white bg-primary px-2 py-2 rounded-md">
-                    <i class="fa-solid fa-plus text-white"></i> Add Record
-                </button>
-            </NuxtLink>
+            <div>
+                <NuxtLink to="events/create">
+                    <button class="text-white bg-primary px-2 py-2 rounded-md">
+                        <i class="fa-solid fa-plus text-white"></i> Add Record
+                    </button>
+                </NuxtLink>
+            </div>
         </div>
-        <TableEvents :events="eventsData"/>
+        <TableEvents/>
     </div>
 </template>
 
 <script>
 import axios from '~/server/index'
+import { checkReload } from '~/composables/checkReload'
 
 export default {
     name: 'EventsPage',
@@ -24,9 +27,8 @@ export default {
             eventsData: []
         }
     },
-    async created() {
-        const response = await axios.get('/events')
-        this.eventsData = response.data.eventsUTC8
+    mounted() {
+        checkReload()
     }
 }
 </script>

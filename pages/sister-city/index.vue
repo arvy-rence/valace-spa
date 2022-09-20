@@ -12,6 +12,7 @@
 
 <script>
 import axios from '~/server/index'
+import { checkReload } from '~/composables/checkReload'
 
 export default {
     name: 'SisterCityPage',
@@ -36,6 +37,9 @@ export default {
         });
 
         console.log(this.sisterCityData)
+    },
+    mounted() {
+        checkReload()
     }
 }
 </script>

@@ -6,6 +6,7 @@
 
 <script>
 import axios from '~/server/index'
+import { checkReload } from '~/composables/checkReload'
 
 export default {
     name: 'NewsPage',
@@ -17,6 +18,9 @@ export default {
     async created() {
         const response = await axios.get('/news')
         this.newsData = response.data
+    },
+    mounted() {
+        checkReload()
     }
 }
 </script>

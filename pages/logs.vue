@@ -7,6 +7,7 @@
 
 <script>
 import axios from '~/server/index'
+import { checkReload } from '~/composables/checkReload'
 
 export default {
     name: 'LogsPage',
@@ -19,6 +20,9 @@ export default {
         const response = await axios.get('/logs')
         console.log(response.data);
         this.logs = response.data.logsUTC8
+    },
+    mounted() {
+        checkReload()
     }
 }
 </script>
