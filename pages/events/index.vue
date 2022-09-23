@@ -1,31 +1,29 @@
 <template>
     <div class="pt-6 flex flex-col justify-center items-center">
-        <div class="flex flex-row justify-around">
-            <h1 class="text-4xl font-bold text-primary font-kulim">
-                LIBRARY EVENTS
-            </h1>
-            <div>
-                <NuxtLink to="events/create">
-                    <button class="text-white bg-primary px-2 py-2 rounded-md">
-                        <i class="fa-solid fa-plus text-white"></i> Add Record
-                    </button>
-                </NuxtLink>
-            </div>
-        </div>
-        <TableEvents/>
+        <PageHeader pageName="LIBRARY EVENTS" slug="events"/>
+        <TableEvents :eventsData="eventsData"/>
+        <Loader :isLoading="isLoading"/>
     </div>
 </template>
 
 <script>
 import axios from '~/server/index'
-import { checkReload } from '~/composables/checkReload'
+import {checkReload} from '~/composables/checkReload'
+import PageHeader from "../../components/PageHeader";
 
 export default {
     name: 'EventsPage',
+    components: {PageHeader},
     data() {
         return {
+            isLoading: true,
             eventsData: []
         }
+    },
+    async created() {
+        const response = await axios.get('/events')
+        this.eventsData = response.data.eventsUTC8
+        this.isLoading = false
     },
     mounted() {
         checkReload()
@@ -33,6 +31,3 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
