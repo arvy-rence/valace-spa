@@ -1,26 +1,26 @@
 <template>
     <form class="w-full max-w-lg m-auto">
-        <div class="py-6 font-khula text-2xl text-center font-bold uppercase text-primary">Create Event</div>
+        <div class="py-6 font-khula text-2xl text-center font-bold uppercase text-primary">Create Sister City</div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
                        for="grid-first-name">
-                    <i class="fa-solid fa-file-signature"></i> <span class="text-[16px] font-kulim">Event Name</span>
+                    <i class="fa-solid fa-file-signature"></i> <span class="text-[16px] font-kulim">City Name</span>
                 </label>
-                <input v-model="eventName"
+                <input v-model="libraryName"
                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-primary rounded py-3 px-4 mb-3 leading-tight focus:ring-0 p-[.5rem] focus:border-none font-kulim"
                        id="grid-first-name"
                        type="text"
-                       placeholder="Event">
+                       placeholder="City Name">
             </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
                        for="grid-first-name">
-                    <i class="fa-solid fa-file-lines"></i> <span class="text-[16px] font-kulim">Event Description</span>
+                    <i class="fa-solid fa-file-lines"></i> <span class="text-[16px] font-kulim">City Description</span>
                 </label>
-                <textarea v-model="eventDescription"
+                <textarea v-model="libraryDescription"
                           id="comment"
                           rows="4"
                           class="px-0 w-full text-gray-900 bg-gray-200 border border-1 rounded-md border-primary focus:ring-0 p-[.5rem] focus:border-none pl-[.7rem] font-kulim"
@@ -28,39 +28,17 @@
                 </textarea>
             </div>
         </div>
-        <div class="flex flex-row items-center w-100 gap-3 mb-6">
-            <div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
                        for="grid-first-name">
-                    <i class="fa-solid fa-calendar-alt"></i> <span class="text-[16px] font-kulim">Date</span>
+                    <i class="fa-solid fa-file-signature"></i> <span class="text-[16px] font-kulim">City Address</span>
                 </label>
-                <input v-model="eventDate"
-                       type="date"
+                <input v-model="address"
                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-primary rounded py-3 px-4 mb-3 leading-tight focus:ring-0 p-[.5rem] focus:border-none font-kulim"
                        id="grid-first-name"
-                       placeholder="Date">
-            </div>
-            <div>
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
-                       for="grid-first-name">
-                    <i class="fa-solid fa-clock"></i> <span class="text-[16px] font-kulim">Time</span>
-                </label>
-                <input v-model="eventTime"
-                       type="time"
-                       class="appearance-none block w-full bg-gray-200 text-gray-700 border border-primary rounded py-3 px-4 mb-3 leading-tight focus:ring-0 p-[.5rem] focus:border-none font-kulim"
-                       id="grid-first-name"
-                       placeholder="Time">
-            </div>
-            <div>
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
-                       for="grid-first-name">
-                    <i class="fa-solid fa-map-marker-alt"></i> <span class="text-[16px] font-kulim">Location</span>
-                </label>
-                <input v-model="eventLocation"
                        type="text"
-                       class="appearance-none block w-full bg-gray-200 text-gray-700 border border-primary rounded py-3 px-4 mb-3 leading-tight focus:ring-0 p-[.5rem] focus:border-none font-kulim"
-                       id="grid-first-name"
-                       placeholder="Location">
+                       placeholder="City Address">
             </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
@@ -101,45 +79,40 @@ export default {
     name: "CreateEventForm",
     data() {
         return {
-            eventName: null,
-            eventDescription: null,
-            eventDate: null,
-            eventTime: null,
-            eventLocation: null,
-            eventImage: null,
+            libraryName: null,
+            address: null,
+            image: null,
+            libraryDescription: null
         }
     },
     methods: {
         async create(e) {
             e.preventDefault()
-            const imageResponse = await uploadImageToAPI(this.eventImage)
-            const event = {
-                eventName: this.eventName,
-                eventDescription: this.eventDescription,
-                eventDate: new Date(this.eventDate + " " + this.eventTime),
-                eventLocation: this.eventLocation,
-                eventImageLink: imageResponse
+            const imageResponse = await uploadImageToAPI(this.image)
+            const city = {
+                libraryName: this.libraryName,
+                libraryDescription: this.libraryDescription,
+                address: this.address,
+                imageLink: imageResponse
             }
-            await axios.post('/events/createEvent', event)
-            alert("Event Successfully Created")
+            await axios.post('/sisterCity/createSisterCity', city)
+            alert("Sister City Successfully Created")
             this.clearFields()
         },
         clearFields() {
-            this.eventName = null
-            this.eventDescription = null
-            this.eventDate = null
-            this.eventTime = null
-            this.eventLocation = null
-            this.eventImage = null
+            this.libraryName = null
+            this.address = null
+            this.image = null
+            this.libraryDescription = null        
         },
         discard(e) {
             e.preventDefault()
             this.clearFields()
-            this.$router.push('/events')
+            this.$router.push('/sister-city')
         },
         async onImageSelect(e) {
-            this.eventImage = e.target.files[0]
-            console.log(this.eventImage)
+            this.image = e.target.files[0]
+            console.log(this.image)
         }
     },
 }
