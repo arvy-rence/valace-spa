@@ -13,7 +13,7 @@
                     <tr>
                         <td class="w-1/3 text-left py-3 px-4 font-kulim">{{log.id}}</td>
                         <td class="w-1/3 text-left py-3 px-4 font-kulim">{{log.log_description}}</td>
-                        <td class="w-1/3 text-left py-3 px-4 font-kulim">{{log.log_date}}</td>
+                        <td class="w-1/3 text-left py-3 px-4 font-kulim">{{convertToMoment(log.log_date)}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { convertToMoment } from '~/composables/convertToMoment';
 export default {
     name: "TableLogs",
     props: {
