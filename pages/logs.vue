@@ -2,6 +2,7 @@
     <div class="pt-6 flex flex-col justify-center items-center">
         <span class="text-4xl font-bold text-primary font-kulim">LOGS</span>
         <TableLogs :logs="logs"/>
+        <Loader :isLoading="isLoading"/>
     </div>
 </template>
 
@@ -20,6 +21,7 @@ export default {
         const response = await axios.get('/logs')
         console.log(response.data);
         this.logs = response.data.logsUTC8
+        this.isLoading = false
     },
     mounted() {
         checkReload()
