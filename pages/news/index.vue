@@ -33,6 +33,8 @@ export default {
             if (this.newsData.length === 0) {
                 this.isLoading = false
                 this.isEmpty = true
+            } else {
+                this.isLoading = false
             }
         }
     }

@@ -7,7 +7,7 @@
                     <span class="pt-4 flex justify-center items-center">
                         <i class="fa-regular fa-newspaper text-primary text-8xl"></i>
                     </span>
-                    <h1 class="pt-6 pb-2 text-lg text-center font-kulim inline-flex justify-center font-bold">
+                    <h1 class="pt-6 pb-2 text-lg text-center font-khula uppercase inline-flex justify-center font-bold">
                         Announcements
                     </h1>
                 </CardCategory>
@@ -17,7 +17,7 @@
                     <span class="pt-4 flex justify-center items-center">
                         <i class="fa-regular fa-calendar text-primary text-8xl"></i>
                     </span>
-                    <h1 class="pt-6 pb-2 text-lg text-center font-kulim inline-flex justify-center font-bold">
+                    <h1 class="pt-6 pb-2 text-lg text-center font-khula uppercase inline-flex justify-center font-bold">
                         Events
                     </h1>
                 </CardCategory>
@@ -27,7 +27,7 @@
                     <span class="pt-4 flex justify-center items-center">
                         <i class="fa-solid fa-book text-primary text-8xl"></i>
                     </span>
-                    <h1 class="pt-6 pb-2 text-lg text-center font-kulim inline-flex justify-center font-bold">
+                    <h1 class="pt-6 pb-2 text-lg text-center font-khula uppercase inline-flex justify-center font-bold">
                         Sister Libraries
                     </h1>
                 </CardCategory>
@@ -37,7 +37,7 @@
                     <span class="pt-4 flex justify-center items-center">
                         <i class="fa-solid fa-gear text-primary text-8xl"></i>
                     </span>
-                    <h1 class="pt-6 pb-2 text-lg text-center font-kulim inline-flex justify-center font-bold">
+                    <h1 class="pt-6 pb-2 text-lg text-center font-khula uppercase inline-flex justify-center font-bold">
                         Logs
                     </h1>
                 </CardCategory>
