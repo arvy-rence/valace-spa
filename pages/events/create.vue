@@ -3,7 +3,7 @@
         <div class="py-6 font-khula text-2xl text-center font-bold uppercase text-primary">Create Event</div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-file-signature"></i> <span class="text-[16px] font-kulim">Event Name</span>
                 </label>
@@ -16,7 +16,7 @@
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-file-lines"></i> <span class="text-[16px] font-kulim">Event Description</span>
                 </label>
@@ -30,7 +30,7 @@
         </div>
         <div class="flex flex-row items-center w-100 gap-3 mb-6">
             <div class="w-1/3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-calendar-alt"></i> <span class="text-[16px] font-kulim">Date</span>
                 </label>
@@ -41,7 +41,7 @@
                        placeholder="Date">
             </div>
             <div class="w-1/3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-clock"></i> <span class="text-[16px] font-kulim">Time Start</span>
                 </label>
@@ -52,7 +52,7 @@
                        placeholder="Time">
             </div>
             <div class="w-1/3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-clock"></i> <span class="text-[16px] font-kulim">Time End</span>
                 </label>
@@ -65,7 +65,7 @@
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                        <i class="fa-solid fa-map-marker-alt"></i> <span class="text-[16px] font-kulim">Event Location</span>
                 </label>
@@ -78,7 +78,7 @@
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lgmb-2"
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-image"></i> <span class="text-[16px] font-kulim">Image</span>
                 </label>
@@ -135,9 +135,13 @@ export default {
                 eventLocation: this.eventLocation,
                 eventImageLink: imageResponse
             }
-            await axios.post('/events/createEvent', event)
-            alert("Event Successfully Created")
-            this.clearFields()
+            try {
+                await axios.post('/events/createEvent', event)
+                alert("Event Successfully Created")
+                this.$router.push('/events')
+            } catch (e) {
+                alert('Event not added successfully')
+            }
         },
         clearFields() {
             this.eventName = null
@@ -152,7 +156,7 @@ export default {
             this.clearFields()
             this.$router.push('/events')
         },
-        async onImageSelect(e) {
+        onImageSelect(e) {
             this.eventImage = e.target.files[0]
             console.log(this.eventImage)
         }

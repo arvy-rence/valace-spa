@@ -5,7 +5,7 @@
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-file-signature"></i> <span class="text-[16px] font-kulim">Event Name</span>
                 </label>
@@ -18,7 +18,7 @@
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-file-lines"></i> <span class="text-[16px] font-kulim">Event Description</span>
                 </label>
@@ -32,7 +32,7 @@
         </div>
         <div class="flex flex-row items-center w-100 gap-3 mb-6">
             <div class="w-1/3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-calendar-alt"></i> <span class="text-[16px] font-kulim">Date</span>
                 </label>
@@ -43,7 +43,7 @@
                        placeholder="Date">
             </div>
             <div class="w-1/3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-clock"></i> <span class="text-[16px] font-kulim">Time Start</span>
                 </label>
@@ -54,7 +54,7 @@
                        placeholder="Time">
             </div>
             <div class="w-1/3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-clock"></i> <span class="text-[16px] font-kulim">Time End</span>
                 </label>
@@ -67,7 +67,7 @@
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                        <i class="fa-solid fa-map-marker-alt"></i> <span class="text-[16px] font-kulim">Event Location</span>
                 </label>
