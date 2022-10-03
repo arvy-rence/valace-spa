@@ -3,7 +3,7 @@
         <div class="py-6 font-khula text-2xl text-center font-bold uppercase text-primary">Create News or Announcement</div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-file-signature"></i> <span class="text-[16px] font-kulim">News Title</span>
                 </label>
@@ -16,7 +16,7 @@
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-file-lines"></i> <span class="text-[16px] font-kulim">News Description</span>
                 </label>
@@ -29,8 +29,8 @@
             </div>
         </div>
         <div class="flex flex-row items-center w-100 gap-3 mb-6">
-            <div>
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+            <div class="w-1/2">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-calendar-alt"></i> <span class="text-[16px] font-kulim">Date</span>
                 </label>
@@ -40,8 +40,8 @@
                        id="grid-first-name"
                        placeholder="Date">
             </div>
-            <div>
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+            <div class="w-1/2">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-clock"></i> <span class="text-[16px] font-kulim">Time</span>
                 </label>
@@ -109,11 +109,11 @@ export default {
             }
             try {
                 await axios.post('/news/createNews', news)
-                console.log("News Created")
+                alert("News Created")
                 this.clearFields()
                 this.$router.push('/news')
             } catch (e) {
-                console.log("Error")
+                alert("Error")
             }
         },
         clearFields() {
