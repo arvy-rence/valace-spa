@@ -20,7 +20,7 @@
             </div>
         </div>
     </div> 
-    <hr class="border border-gray-300"/>
+    <hr class="border-t-[0.2px] border-primary opacity-30"/>
 </template>
 
 <script>
