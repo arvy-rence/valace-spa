@@ -7,7 +7,8 @@
                     <th class="w-1/8 text-left py-3 px-4 uppercase font-bold text-sm font-khula">ID</th>
                     <th class="w-1/8 text-left py-3 px-4 uppercase font-bold text-sm font-khula">Name</th>
                     <th class="w-2/8 text-left py-3 px-4 uppercase font-bold text-sm font-khula">Description</th>
-                    <th class="w-2/8 text-left py-3 px-4 uppercase font-bold text-sm font-khula">Date</th>
+                    <th class="w-2/8 text-left py-3 px-4 uppercase font-bold text-sm font-khula">Event Start Date</th>
+                    <th class="w-2/8 text-left py-3 px-4 uppercase font-bold text-sm font-khula">Event End Date</th>
                     <th class="w-1/8 text-left py-3 px-4 uppercase font-bold text-sm font-khula">Location</th>
                     <th class="w-1/8 text-left py-3 px-4 uppercase font-bold text-sm font-khula">Image Link</th>
                     <th class="w-1/8 text-left py-3 px-4 uppercase font-bold text-sm font-khula">Actions</th>
@@ -18,7 +19,8 @@
                         <td class="w-1/8 text-left py-3 px-4 font-kulim">{{eventData.id}}</td>
                         <td class="w-1/8 text-left py-3 px-4 font-kulim">{{eventData.event_name}}</td>
                         <td class="w-2/8 text-left py-3 px-4 font-kulim">{{eventData.event_description}}</td>
-                        <td class="w-2/8 text-left py-3 px-4 font-kulim">{{convertToMoment(eventData.event_date)}}</td>
+                        <td class="w-2/8 text-left py-3 px-4 font-kulim">{{convertToMoment(eventData.event_date_start)}}</td>
+                        <td class="w-2/8 text-left py-3 px-4 font-kulim">{{convertToMoment(eventData.event_date_end)}}</td>
                         <td class="w-1/8 text-left py-3 px-4 font-kulim">{{eventData.event_location}}</td>
                         <td class="w-1/8 text-left py-3 px-4 font-kulim">
                             <img :src="eventData.event_image_link" class="w-full h-full">

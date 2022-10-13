@@ -3,7 +3,7 @@
         <div class="py-6 font-khula text-2xl text-center font-bold uppercase text-primary">Create Event</div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-file-signature"></i> <span class="text-[16px] font-kulim">Event Name</span>
                 </label>
@@ -16,7 +16,7 @@
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-file-lines"></i> <span class="text-[16px] font-kulim">Event Description</span>
                 </label>
@@ -29,8 +29,8 @@
             </div>
         </div>
         <div class="flex flex-row items-center w-100 gap-3 mb-6">
-            <div>
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+            <div class="w-1/3">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-calendar-alt"></i> <span class="text-[16px] font-kulim">Date</span>
                 </label>
@@ -40,32 +40,45 @@
                        id="grid-first-name"
                        placeholder="Date">
             </div>
-            <div>
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+            <div class="w-1/3">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
-                    <i class="fa-solid fa-clock"></i> <span class="text-[16px] font-kulim">Time</span>
+                    <i class="fa-solid fa-clock"></i> <span class="text-[16px] font-kulim">Time Start</span>
                 </label>
-                <input v-model="eventTime"
+                <input v-model="eventTimeStart"
                        type="time"
                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-primary rounded py-3 px-4 mb-3 leading-tight focus:ring-0 p-[.5rem] focus:border-none font-kulim"
                        id="grid-first-name"
                        placeholder="Time">
             </div>
-            <div>
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
+            <div class="w-1/3">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
-                    <i class="fa-solid fa-map-marker-alt"></i> <span class="text-[16px] font-kulim">Location</span>
+                    <i class="fa-solid fa-clock"></i> <span class="text-[16px] font-kulim">Time End</span>
                 </label>
-                <input v-model="eventLocation"
-                       type="text"
+                <input v-model="eventTimeEnd"
+                       type="time"
                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-primary rounded py-3 px-4 mb-3 leading-tight focus:ring-0 p-[.5rem] focus:border-none font-kulim"
                        id="grid-first-name"
-                       placeholder="Location">
+                       placeholder="Time">
             </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lgmb-2"
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                       for="grid-first-name">
+                       <i class="fa-solid fa-map-marker-alt"></i> <span class="text-[16px] font-kulim">Event Location</span>
+                </label>
+                <input v-model="eventLocation"
+                       class="appearance-none block w-full bg-gray-200 text-gray-700 border border-primary rounded py-3 px-4 mb-3 leading-tight focus:ring-0 p-[.5rem] focus:border-none font-kulim"
+                       id="grid-first-name"
+                       type="text"
+                       placeholder="Event Location">
+            </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                        for="grid-first-name">
                     <i class="fa-solid fa-image"></i> <span class="text-[16px] font-kulim">Image</span>
                 </label>
@@ -104,7 +117,8 @@ export default {
             eventName: null,
             eventDescription: null,
             eventDate: null,
-            eventTime: null,
+            eventTimeStart: null,
+            eventTimeEnd: null,
             eventLocation: null,
             eventImage: null,
         }
@@ -116,13 +130,18 @@ export default {
             const event = {
                 eventName: this.eventName,
                 eventDescription: this.eventDescription,
-                eventDate: new Date(this.eventDate + " " + this.eventTime),
+                eventDateStart: new Date(this.eventDate + " " + this.eventTimeStart),
+                eventDateEnd: new Date(this.eventDate + " " + this.eventTimeEnd),
                 eventLocation: this.eventLocation,
                 eventImageLink: imageResponse
             }
-            await axios.post('/events/createEvent', event)
-            alert("Event Successfully Created")
-            this.clearFields()
+            try {
+                await axios.post('/events/createEvent', event)
+                alert("Event Successfully Created")
+                this.$router.push('/events')
+            } catch (e) {
+                alert('Event not added successfully')
+            }
         },
         clearFields() {
             this.eventName = null
@@ -137,7 +156,7 @@ export default {
             this.clearFields()
             this.$router.push('/events')
         },
-        async onImageSelect(e) {
+        onImageSelect(e) {
             this.eventImage = e.target.files[0]
             console.log(this.eventImage)
         }

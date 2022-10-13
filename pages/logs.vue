@@ -19,7 +19,6 @@ export default {
     },
     async created() {
         const response = await axios.get('/logs')
-        console.log(response.data);
         this.logs = response.data.logsUTC8
         this.isLoading = false
     },
