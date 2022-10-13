@@ -1,26 +1,26 @@
 <template>
     <form class="w-full max-w-lg m-auto">
-        <div class="py-6 font-khula text-2xl text-center font-bold uppercase text-primary">Create News or Announcement</div>
+        <div class="py-6 font-khula text-2xl text-center font-bold uppercase text-primary">Create Topnotchers</div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
                        for="grid-first-name">
-                    <i class="fa-solid fa-file-signature"></i> <span class="text-[16px] font-kulim">News Title</span>
+                    <i class="fa-solid fa-file-signature"></i> <span class="text-[16px] font-kulim">Topnotchers Name</span>
                 </label>
-                <input v-model="newsTitle"
+                <input v-model="name"
                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-primary rounded py-3 px-4 mb-3 leading-tight focus:ring-0 p-[.5rem] focus:border-none font-kulim"
                        id="grid-first-name"
                        type="text"
-                       placeholder="News">
+                       placeholder="Topnotchers Name">
             </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
                        for="grid-first-name">
-                    <i class="fa-solid fa-file-lines"></i> <span class="text-[16px] font-kulim">News Description</span>
+                    <i class="fa-solid fa-file-lines"></i> <span class="text-[16px] font-kulim">Topnotchers Title</span>
                 </label>
-                <textarea v-model="newsDescription"
+                <textarea v-model="title"
                           id="comment"
                           rows="4"
                           class="px-0 w-full text-gray-900 bg-gray-200 border border-1 rounded-md border-primary focus:ring-0 p-[.5rem] focus:border-none pl-[.7rem] font-kulim"
@@ -29,27 +29,16 @@
             </div>
         </div>
         <div class="flex flex-row items-center w-100 gap-3 mb-6">
-            <div class="w-1/2">
+            <div class="w-full">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
                        for="grid-first-name">
-                    <i class="fa-solid fa-calendar-alt"></i> <span class="text-[16px] font-kulim">Date</span>
+                    <i class="fa-solid fa-calendar-alt"></i> <span class="text-[16px] font-kulim">Date Posted</span>
                 </label>
-                <input v-model="newsDate"
+                <input v-model="datePosted"
                        type="date"
                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-primary rounded py-3 px-4 mb-3 leading-tight focus:ring-0 p-[.5rem] focus:border-none font-kulim"
                        id="grid-first-name"
                        placeholder="Date">
-            </div>
-            <div class="w-1/2">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold text-lg mb-2"
-                       for="grid-first-name">
-                    <i class="fa-solid fa-clock"></i> <span class="text-[16px] font-kulim">Time</span>
-                </label>
-                <input v-model="newsTime"
-                       type="time"
-                       class="appearance-none block w-full bg-gray-200 text-gray-700 border border-primary rounded py-3 px-4 mb-3 leading-tight focus:ring-0 p-[.5rem] focus:border-none font-kulim"
-                       id="grid-first-name"
-                       placeholder="Time">
             </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
@@ -90,47 +79,41 @@ export default {
     name: "CreateEventForm",
     data() {
         return {
-            newsTitle: null,
-            newsDescription: null,
-            newsDate: null,
-            newsTime: null,
-            newsImage: null,
+            name: null,
+            title: null,
+            image: null,
+            datePosted: null
         }
     },
     methods: {
         async create(e) {
             e.preventDefault()
-            const imageResponse = await uploadImageToAPI(this.newsImage)
-            const news = {
-                newsTitle: this.newsTitle,
-                newsDescription: this.newsDescription,
-                newsDate: new Date(this.newsDate + " " + this.newsTime),
-                newsImageLink: imageResponse
+            const imageResponse = await uploadImageToAPI(this.image)
+            const person = {
+                topnotcherName: this.name,
+                topnotcherTitle: this.title,
+                dateUploaded: this.datePosted,
+                imageLink: imageResponse
             }
-            try {
-                await axios.post('/news/createNews', news)
-                console.log("News Created")
-                this.clearFields()
-                this.$router.push('/news')
-            } catch (e) {
-                console.log("Error")
-            }
+            await axios.post('/topnotchers/createTopnotcher', person)
+            alert("Topnotcher Successfully Created")
+            this.clearFields()
+            this.$router.push('/topnotchers')
         },
         clearFields() {
-            this.newsTitle = null
-            this.newsDescription = null
-            this.newsDate = null
-            this.newsTime = null
-            this.newsImage = null
+            this.name = null
+            this.title = null
+            this.image = null
+            this.datePosted = null
         },
         discard(e) {
             e.preventDefault()
             this.clearFields()
-            this.$router.push('/news')
+            this.$router.push('/sister-city')
         },
         async onImageSelect(e) {
-            this.newsImage = e.target.files[0]
-            console.log(this.newsImage)
+            this.image = e.target.files[0]
+            console.log(this.image)
         }
     },
 }
